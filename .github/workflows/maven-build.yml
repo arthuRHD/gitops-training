@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test in parallel with build
-        run: echo "parallel with build
+        run: echo "parallel with build"
   build:
     runs-on: ubuntu-latest
     strategy:
