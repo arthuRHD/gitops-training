@@ -45,13 +45,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # This step uses [docker/metadata-action](https://github.com/docker/metadata-action#about) to extract tags and labels that will be applied to the specified image. The `id` "meta" allows the output of this step to be referenced in a subsequent step. The `images` value provides the base name for the tags and labels.
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      - name: Push to registry
+      - name: Build and push Docker image
         run: |
-          APP_VERSION=$(JAVA_HOME=/usr mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          APP_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           docker tag spring-petclinic:$APP_VERSION ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$APP_VERSION
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$APP_VERSION
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          push: true
+          tags: $APP_VERSION
+          labels: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
