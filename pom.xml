@@ -227,7 +227,9 @@
               <goal>build-image</goal>
             </goals>
             <configuration>
-              <imageName>ghcr.io/${project.artifactId}</imageName>
+              <image>
+                <name>ghcr.io/arthuRHD/${project.artifactId}:${project.version}</name>
+              </image>
               <additionalProperties>
                 <encoding.source>${project.build.sourceEncoding}</encoding.source>
                 <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
