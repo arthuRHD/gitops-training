@@ -224,8 +224,10 @@
               if a META-INF/build-info.properties file is present -->
             <goals>
               <goal>build-info</goal>
+              <goal>build-image</goal>
             </goals>
             <configuration>
+              <imageName>ghcr.io/${project.artifactId}</imageName>
               <additionalProperties>
                 <encoding.source>${project.build.sourceEncoding}</encoding.source>
                 <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
@@ -435,5 +437,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>
