@@ -49,4 +49,4 @@ jobs:
         run: | 
           mvn spring-boot:build-image -DskipTests
           docker image ls
-          docker push ghcr.io/spring-petclinic:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          docker push ghcr.io/arthurrhd/spring-petclinic:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
