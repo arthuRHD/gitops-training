@@ -9,10 +9,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
- REGISTRY: "ghcr.io"
- IMAGE_NAME: "spring-petclinic"
-
 jobs:
   test1:
     runs-on: ubuntu-latest
@@ -48,4 +44,4 @@ jobs:
       - name: Build and push with Maven Wrapper
         run: | 
           mvn spring-boot:build-image -DskipTests
-          docker push ghrc.io/spring-petclinic:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          docker push ghcr.io/spring-petclinic:$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
